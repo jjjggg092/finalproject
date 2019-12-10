@@ -1,0 +1,83 @@
+{% extends "users/base.html" %}
+{% load static %}
+{% block title %}
+Manage your wallet here!
+{% endblock %}
+{% block button %}
+{% if message %}
+<span class="navbar-text" style="color: #ffffff; background-color: rgb(223, 99, 52); border-radius: 5px;">
+    {{ message }}
+</span>
+{% endif %}
+
+<form action="{% url 'login_view' %}" class="form-inline" method="post">
+  {% csrf_token %}
+  <input name="logusername" type="username" class="form-control" id="exampleInputEmail1"  placeholder="Username">
+  <input name="logpassword" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  <button class="btn btn-dark" type="submit" ru>Login</button>
+</form>
+
+{% endblock %}
+
+
+{% block body %}
+
+  <div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 3</div>
+  <img src="{% static 'img/bg-img.jpg' %}" style="width:100%">
+  <div class="text">Organize your money.</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 3</div>
+  <img src="{% static 'img/money.jpg' %}" style="width:100%">
+  <div class="text">Save your money to buy anything</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 3</div>
+  <img src="{% static 'img/piggy-bank.jpg' %}" style="width:100%">
+  <div class="text">Register!!</div>
+</div>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+
+  <h1>Manage your wallwt and more!.</h1>
+
+  <div class="slbox">
+    <h3 id="reg">Register</h3>
+    {% if reg_message %}
+        <p>{{ reg_message }}</p>
+    {% endif %}
+
+    <form action="{% url 'signup' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <input name="regfname" type="name" class="form-control" id="exampleInputEmail1"  placeholder="First Name">
+      </div>
+      <div class="form-group">
+        <input name="reglname" type="name" class="form-control" id="exampleInputEmail1"  placeholder="Last Name">
+      </div>
+      <div class="form-group">
+        <input name="regusername" type="username" class="form-control" id="exampleInputEmail1"  placeholder="Username">
+      </div>
+      <div class="form-group">
+        <input name="email" type="email" class="form-control" id="exampleInputEmail1"  placeholder="Email">
+      </div>
+      <div class="form-group">
+        <input name="regpassword" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        <input id="action" name="action" type="hidden" value="register">
+      </div>
+      <button type="submit" class="btn btn-outline-primary">Register</button>
+    </form>
+  </div>
+{% endblock %}

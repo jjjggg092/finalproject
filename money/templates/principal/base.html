@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'money/styles2.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+    <title></title>
+  </head>
+  <body>
+    <div id="sideNavigation" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#" onclick="showAdd()">Add Founds</a>
+      <a href="#" onclick="showRemove()">Add Expeneses</a>
+      <a href="#" onclick="showBrief()">Show Brief</a>
+      <br><br><br><br><br><br>
+      <hr>
+      <a href="{% url 'logout' %}">Log out</a>
+    </div>
+
+    <nav class="topnav">
+      <a href="#" onclick="openNav()">
+        <svg width="30" height="30" id="icoOpen">
+          <path d="M0,5 30,5" stroke="#000" stroke-width="5"/>
+          <path d="M0,14 30,14" stroke="#000" stroke-width="5"/>
+          <path d="M0,23 30,23" stroke="#000" stroke-width="5"/>
+        </svg>
+      </a>
+      <di class="navtext">
+
+        <h1> ||-{{ user.username }}-||    </h1>
+      </di>
+    </nav>
+
+<div id="main">
+<!-- Add all your websites page content here  -->
+<div class="saldo">
+  <h1>{{ user.first_name }} {{ user.last_name }}, your balance is: </h1>
+  <br>
+  <p style="text-align: center;">{{ balance.money }} USD</p>
+  <a href="" style="font-size: 12px;">Show savings</a>
+  <p class='saves'>You have {{ saves.money }} USD saved.</p>
+</div>
+<div class="tip">
+  <h4>Suggested Tip!!</h4>
+  <p id="tip">
+
+  </p>
+</div>
+<hr>
+<div class="add">
+  <h3>Add money to your acount.</h3>
+  <form action="{% url 'addmo' %}" method="post">
+    {% csrf_token %}
+    <p class="label">Your money came from:</p>
+    <input type="text" name="type" id="type" placeholder="borrow?">
+    <p class="label label-default">Quantiry</p>
+    <input type="number" name="quanuty" id="quanuty"> <label for="">USD</label>
+    <p class="label label-default">You wnt to save</p>
+    <input type="number" name="save" id="save" min="0" max="100"> <label for="">%</label>
+    <p class="label label-default">When you got the money?</p>
+    <input type="date" name="date"><hr>
+    <input type="submit" value="Add Money">
+  </form>
+</div>
+<div class="waste">
+  <h3>What was your spend?</h3>
+  <form action="{% url 'outs' %}" method="post">
+    {% csrf_token %}
+    <p class="label">You wasted your money in:</p>
+    <input type="text" name="wtype" id="type" placeholder="food?">
+    <p class="label label-default">Quantiry:</p>
+    <input type="number" name="wquanuty" id="quanuty"> <label for="">USD</label>
+    <p class="label label-default">When you wasted the money?</p>
+    <input type="date" name="wdate"><hr>
+    <input type="submit" value="Spend Money">
+  </form>
+</div>
+<div class="summary">
+  <h3>Your sumary</h3>
+  {% for in in Ins %}
+        <p>{{ in }}</p>
+  {% endfor %}
+  {% for spend in Spends %}
+        <p>{{ spend }}</p>
+  {% endfor %}
+</div><hr><a href="{% url 'Brief' %}">Show</a>
+</div>
+    <script src="{% static 'money/scripts2.js' %}"></script>
+  </body>
+</html>

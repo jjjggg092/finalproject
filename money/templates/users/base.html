@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'money/styles.css' %}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+  </head>
+  <body>
+    <div class="container">
+      <header class="blog-header py-3">
+            <nav class="navbar fixed-top navbar-expand-lg" style="background-color: #c45b5b">
+                <!-- Navbar content -->
+                <a class="navbar-brand">MaMoney</a>
+                {% block button %}
+                {% endblock %}
+        </header>
+
+    {% block body %}
+    {% endblock %}
+
+
+
+</div>
+<footer class="page-footer font-small blue" style="margin-bottom: 0px;">
+<p class="float-right"><a href="#">Back to top</a></p>
+<div class="row">
+    <div class="col-12 col-md">
+        <img class="mb-2" src="{% static 'img/letter-j-128.png' %}" alt="g" width="24" height="24">
+        <img class="mb-2" src="{% static  'img/letter-g-256.png' %}" alt="j" width="24" height="24">
+        <small class="d-block mb-3 text-muted">&copy; 2019</small>
+    </div>
+</div>
+</footer>
+<script src="{% static 'money/scripts.js' %}"></script>
+  </body>
+</html>
