@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
   tips();
+  document.querySelector('#showsaves').onclick = function() {
+    var div = document.querySelector('.saves');
+    var text = document.querySelector('#showsaves');
+    if (div.style.display == 'none') {
+      div.style.display = 'block';
+      text.innerHTML = 'Hide saves.';
+    }
+    else{
+      div.style.display = 'none';
+      text.innerHTML = 'Show saves.';
+    }
+  }
 });
 
 /*-----  Side navbar in principal/base.html-----*/

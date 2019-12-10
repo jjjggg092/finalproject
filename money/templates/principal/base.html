@@ -41,7 +41,7 @@
   <h1>{{ user.first_name }} {{ user.last_name }}, your balance is: </h1>
   <br>
   <p style="text-align: center;">{{ balance.money }} USD</p>
-  <a href="" style="font-size: 12px;">Show savings</a>
+  <a id='showsaves' style="font-size: 12px;">Show savings</a>
   <p class='saves'>You have {{ saves.money }} USD saved.</p>
 </div>
 <div class="tip">
@@ -87,7 +87,8 @@
   {% for spend in Spends %}
         <p>{{ spend }}</p>
   {% endfor %}
-</div><hr><a href="{% url 'Brief' %}">Show</a>
+  <hr>
+</div>
 </div>
     <script src="{% static 'money/scripts2.js' %}"></script>
   </body>

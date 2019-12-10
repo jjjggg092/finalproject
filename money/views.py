@@ -18,6 +18,8 @@ def index(request):
     "user": request.user,
     'balance': bal[0],
     'saves': sav[0],
+    'Ins': Ins.objects.filter(uname = request.user.username),
+    'Spends': Spends.objects.filter(uname = request.user.username)
     }
     return render(request, "principal/base.html", context)
 
@@ -75,6 +77,8 @@ def addmo(request):
         "user": request.user,
         'balance': bal,
         'saves': sav,
+        'Ins': Ins.objects.filter(uname = request.user.username),
+        'Spends': Spends.objects.filter(uname = request.user.username)
         }
     return render(request, "principal/base.html", context)
 
@@ -94,18 +98,7 @@ def outs(request):
         "user": request.user,
         'balance': bal,
         'saves': sav,
+        'Ins': Ins.objects.filter(uname = request.user.username),
+        'Spends': Spends.objects.filter(uname = request.user.username)
         }
-    return render(request, "principal/base.html", context)
-
-def Brief(request):
-    uname = request.user.username
-    bal = Ins.objects.filter(uname = request.user.username)
-    print(bal)
-    sav = Spends.objects.filter(uname = request.user.username)
-    print(sav)
-    context = {
-        "user": request.user,
-        'Ins': bal,
-        'Spends': sav,
-    }
     return render(request, "principal/base.html", context)

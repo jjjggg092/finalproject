@@ -195,3 +195,7 @@ a svg{
 .tip{
   padding: 15px;
 }
+
+.saves{
+  display: none;
+}
